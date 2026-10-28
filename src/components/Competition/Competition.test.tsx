@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import Competition from './index';
 
 const id = '0';
@@ -8,7 +9,11 @@ const quantity = '20';
 const description = 'descricao competição muito legal';
 
 test('Componente recebe um card com nome da competição, descriçao e quantidade de times', () => {
-  render(<Competition id={id} name={name} quantity={quantity} description={description} />);
+  render(
+    <MemoryRouter>
+      <Competition id={id} name={name} quantity={quantity} description={description} />
+    </MemoryRouter>,
+  );
 
   const text1 = screen.getByText(name);
   const text2 = screen.getByText(`${quantity} times`);
