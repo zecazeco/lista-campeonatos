@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Stack from '@mui/material/Stack';
 import { useParams } from 'react-router-dom';
-import { Match, TopBar } from '../../components';
+import { Match, Status, TopBar } from '../../components';
 import api from '../../services/api';
+import useApi from '../../hooks/useApi';
 
 import { IMatch } from '../../interfaces/match';
 import { ITeam } from '../../interfaces/team';
 
 function MatchesList() {
   const params = useParams();
-
-  const [matches, setMatches] = useState<IMatch[]>([]);
 
   const fetchMatches = async () => {
     // busca tudo de uma vez em vez de uma requisição por time de cada partida
@@ -20,26 +19,25 @@ function MatchesList() {
       api.get(`/competitions/${params.id}`),
     ]);
     const teamName = (id: string) => allTeams.data.find((team: ITeam) => team.id === id)?.name;
-    const formatedMatches = allMatches.data.map((item: IMatch) => ({
+    const formatedMatches: IMatch[] = allMatches.data.map((item: IMatch) => ({
       ...item,
       home: teamName(item.home),
       away: teamName(item.away),
       competition: competition.data.name,
     }));
 
-    setMatches(formatedMatches);
+    return formatedMatches;
   };
 
-  useEffect(() => {
-    fetchMatches();
-  }, []);
+  const { data: matches, loading, error } = useApi(fetchMatches, []);
 
   return (
     <>
       <TopBar title="Partidas" />
       <Stack spacing={2}>
+        <Status loading={loading} error={error} empty={matches.length === 0} />
         {
-          matches.length > 0 && matches.map((item) => (
+          matches.map((item) => (
             <Match
               key={item.id}
               id={item.id}

@@ -1,30 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Stack from '@mui/material/Stack';
-import { Competition, TopBar } from '../../components';
+import { Competition, Status, TopBar } from '../../components';
 import api from '../../services/api';
+import useApi from '../../hooks/useApi';
 
 import { ICompetition } from '../../interfaces/competition';
 
 function CompetitionsList() {
-  const [competitions, setCompetitions] = useState<ICompetition[]>([]);
+  const fetchCompetitions = async () => {
+    const { data } = await api.get('/competitions');
+    return data as ICompetition[];
+  };
 
-  useEffect(() => {
-    async function getCompetitions() {
-      const { data } = await api.get('/competitions');
-      // console.log('RESPO', data);
-      setCompetitions(data);
-    }
+  const { data: competitions, loading, error } = useApi(fetchCompetitions, []);
 
-    getCompetitions();
-  }, []);
-
-  // console.log('ep', competitions[0].id);
   return (
     <>
       <TopBar title="Campeonatos" />
       <Stack spacing={2}>
+        <Status loading={loading} error={error} empty={competitions.length === 0} />
         {
-          competitions.length > 0 && competitions.map((item) => (
+          competitions.map((item) => (
             <Competition
               key={item.id}
               id={item.id}
