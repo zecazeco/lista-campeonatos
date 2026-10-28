@@ -3,8 +3,7 @@ Projeto de estudo feito de React com Typescript que lista campeonatos, seus part
 
 Demonstração: [Campeonatos](https://zecazeco.github.io/lista-campeonatos-estudos/)
 
-backEnd:
-[API de estudos](https://github.com/zecazeco/node-api-estudos)
+Os dados vêm de um backend fake (`src/services/data.ts`), que simula as rotas da antiga [API de estudos](https://github.com/zecazeco/node-api-estudos).
 
 ## To Do
 - Adicionar força de cada time

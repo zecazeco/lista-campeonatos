@@ -12,14 +12,8 @@ function TeamsList() {
   const [teams, setTeams] = useState<ITeam[]>([]);
 
   const fetchTeams = async () => {
-    const allTeams = await api.get(`/competitions/${params.id}/teams`);
-    const formatedTeams = await Promise.all(allTeams.data.map(async (item: any) => {
-      const res = await api.get(`/teams/${item.team}`);
-      // console.log('dddd', res.data);
-      return res.data;
-    }));
-    // console.log('formx', formatedTeams);
-    setTeams(formatedTeams);
+    const { data } = await api.get(`/competitions/${params.id}/teams`);
+    setTeams(data);
   };
 
   useEffect(() => {
