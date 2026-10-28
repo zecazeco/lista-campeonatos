@@ -5,6 +5,7 @@ import { Match, TopBar } from '../../components';
 import api from '../../services/api';
 
 import { IMatch } from '../../interfaces/match';
+import { ITeam } from '../../interfaces/team';
 
 function MatchesList() {
   const params = useParams();
@@ -12,12 +13,18 @@ function MatchesList() {
   const [matches, setMatches] = useState<IMatch[]>([]);
 
   const fetchMatches = async () => {
-    const allMatches = await api.get(`/competitions/${params.id}/matches`);
-    const formatedMatches = await Promise.all(allMatches.data.map(async (item: IMatch) => {
-      item.home = await (await api.get(`/teams/${item.home}`)).data.name;
-      item.away = await (await api.get(`/teams/${item.away}`)).data.name;
-      item.competition = await (await api.get(`/competitions/${item.competition}`)).data.name;
-      return item;
+    // busca tudo de uma vez em vez de uma requisição por time de cada partida
+    const [allMatches, allTeams, competition] = await Promise.all([
+      api.get(`/competitions/${params.id}/matches`),
+      api.get('/teams'),
+      api.get(`/competitions/${params.id}`),
+    ]);
+    const teamName = (id: string) => allTeams.data.find((team: ITeam) => team.id === id)?.name;
+    const formatedMatches = allMatches.data.map((item: IMatch) => ({
+      ...item,
+      home: teamName(item.home),
+      away: teamName(item.away),
+      competition: competition.data.name,
     }));
 
     setMatches(formatedMatches);
