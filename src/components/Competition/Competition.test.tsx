@@ -4,14 +4,14 @@ import Competition from './index';
 
 const id = '0';
 const name = 'competição 1';
-const country = 'Brazil';
+const quantity = '20';
 const description = 'descricao competição muito legal';
 
-test('Componente recebe um card com nome da competição, descriçao e pais', () => {
-  render(<Competition id={id} name={name} country={country} description={description} />);
+test('Componente recebe um card com nome da competição, descriçao e quantidade de times', () => {
+  render(<Competition id={id} name={name} quantity={quantity} description={description} />);
 
   const text1 = screen.getByText(name);
-  const text2 = screen.getByText(country);
+  const text2 = screen.getByText(`${quantity} times`);
   const text3 = screen.getByText(description);
 
   expect(text1).toBeInTheDocument();

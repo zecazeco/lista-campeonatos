@@ -1,6 +1,6 @@
 export interface ICompetition {
   id: string;
   name: string;
-  country: string;
+  quantity: string;
   description: string;
 }

@@ -14,13 +14,13 @@ function Competition({
   id,
   name,
   description,
-  country,
+  quantity,
 }: ICompetition) {
   return (
     <Card sx={{ minWidth: 345 }}>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          {country}
+          {quantity} times
         </Typography>
         <Typography variant="h5" component="div">
           {name}

@@ -29,7 +29,7 @@ function CompetitionsList() {
               key={item.id}
               id={item.id}
               name={item.name}
-              country={item.country}
+              quantity={item.quantity}
               description={item.description}
             />
           ))
