@@ -1,10 +1,13 @@
 {
   "files": {
-    "main.js": "/lista-campeonatos-estudos/static/js/main.6fbd65b4.js",
+    "main.css": "/lista-campeonatos-estudos/static/css/main.41436714.css",
+    "main.js": "/lista-campeonatos-estudos/static/js/main.1decafdb.js",
     "index.html": "/lista-campeonatos-estudos/index.html",
-    "main.6fbd65b4.js.map": "/lista-campeonatos-estudos/static/js/main.6fbd65b4.js.map"
+    "main.41436714.css.map": "/lista-campeonatos-estudos/static/css/main.41436714.css.map",
+    "main.1decafdb.js.map": "/lista-campeonatos-estudos/static/js/main.1decafdb.js.map"
   },
   "entrypoints": [
-    "static/js/main.6fbd65b4.js"
+    "static/css/main.41436714.css",
+    "static/js/main.1decafdb.js"
   ]
 }
