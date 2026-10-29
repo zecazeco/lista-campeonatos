@@ -1,5 +1,5 @@
 # Campeonatos, times e confrontos (frontEnd)
-Projeto de estudo feito de React com Typescript que lista campeonatos, seus participantes e os confrontos entre eles.
+Projeto feito em React com TypeScript que lista campeonatos, seus participantes e os confrontos entre eles.
 
 Demonstração: [Campeonatos](https://zecazeco.github.io/lista-campeonatos-estudos/)
 
