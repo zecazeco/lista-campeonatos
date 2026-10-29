@@ -1,5 +1,4 @@
 import React from 'react';
-import Stack from '@mui/material/Stack';
 import { useParams } from 'react-router-dom';
 import { Match, Status, TopBar } from '../../components';
 import api from '../../services/api';
@@ -34,7 +33,7 @@ function MatchesList() {
   return (
     <>
       <TopBar title="Partidas" />
-      <Stack spacing={2}>
+      <div className="list">
         <Status loading={loading} error={error} empty={matches.length === 0} />
         {
           matches.map((item) => (
@@ -48,7 +47,7 @@ function MatchesList() {
             />
           ))
         }
-      </Stack>
+      </div>
     </>
   );
 }

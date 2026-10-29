@@ -1,5 +1,4 @@
 import React from 'react';
-import Stack from '@mui/material/Stack';
 import { useParams } from 'react-router-dom';
 import { Status, Team, TopBar } from '../../components';
 import api from '../../services/api';
@@ -20,7 +19,7 @@ function TeamsList() {
   return (
     <>
       <TopBar title="Equipes" />
-      <Stack spacing={2}>
+      <div className="list">
         <Status loading={loading} error={error} empty={teams.length === 0} />
         {
           teams.map((item) => (
@@ -32,7 +31,7 @@ function TeamsList() {
             />
           ))
         }
-      </Stack>
+      </div>
     </>
   );
 }

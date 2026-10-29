@@ -1,5 +1,4 @@
 import React from 'react';
-import Stack from '@mui/material/Stack';
 import { Competition, Status, TopBar } from '../../components';
 import api from '../../services/api';
 import useApi from '../../hooks/useApi';
@@ -17,7 +16,7 @@ function CompetitionsList() {
   return (
     <>
       <TopBar title="Campeonatos" />
-      <Stack spacing={2}>
+      <div className="list">
         <Status loading={loading} error={error} empty={competitions.length === 0} />
         {
           competitions.map((item) => (
@@ -30,7 +29,7 @@ function CompetitionsList() {
             />
           ))
         }
-      </Stack>
+      </div>
     </>
   );
 }

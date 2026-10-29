@@ -1,27 +1,26 @@
 import React from 'react';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 
 import { ITeam } from '../../interfaces/team';
 
+// pega as iniciais das duas primeiras palavras do nome
+function initials(name: string) {
+  return name
+    .split(' ')
+    .slice(0, 2)
+    .map((word) => word[0])
+    .join('')
+    .toUpperCase();
+}
+
 function Team({ name, city }: ITeam) {
   return (
-    <Card sx={{ minWidth: 345 }}>
-      <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          {city}
-        </Typography>
-        <Typography variant="h5" component="div">
-          {name}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Jogadores</Button>
-      </CardActions>
-    </Card>
+    <article className="card team">
+      <span className="team__avatar" aria-hidden="true">{initials(name)}</span>
+      <div>
+        <h2 className="card__title">{name}</h2>
+        <p className="card__text">{city}</p>
+      </div>
+    </article>
   );
 }
 

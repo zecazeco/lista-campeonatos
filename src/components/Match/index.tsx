@@ -1,8 +1,4 @@
 import React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import Stack from '@mui/material/Stack';
 
 import { IMatch } from '../../interfaces/match';
 
@@ -10,27 +6,17 @@ function Match({
   date, home, away, competition,
 }: IMatch) {
   return (
-    <Card sx={{ minWidth: 345 }}>
-      <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          {date}
-        </Typography>
-        <Stack direction="row" spacing={2}>
-          <Typography variant="h5" component="div">
-            {home}
-          </Typography>
-          <Typography variant="h5" component="div">
-            X
-          </Typography>
-          <Typography variant="h5" component="div">
-            {away}
-          </Typography>
-        </Stack>
-        <Typography variant="body2">
-          {competition}
-        </Typography>
-      </CardContent>
-    </Card>
+    <article className="card">
+      <div className="match__meta">
+        <span>{competition}</span>
+        <span>{date}</span>
+      </div>
+      <div className="match__board">
+        <span className="match__team--home">{home}</span>
+        <span className="match__vs">x</span>
+        <span>{away}</span>
+      </div>
+    </article>
   );
 }
 

@@ -1,15 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import CssBaseline from '@mui/material/CssBaseline';
-import Container from '@mui/material/Container';
 import App from './App';
+import './styles.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <CssBaseline />
-    <Container maxWidth="sm">
+    <main className="container">
       <App />
-    </Container>
+    </main>
   </React.StrictMode>,
   document.getElementById('root'),
 );
